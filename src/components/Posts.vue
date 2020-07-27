@@ -17,7 +17,7 @@
                 <img src="/assets/images/person_1.jpg" alt="Image" class="img-fluidid">
               </div>
               <div class="vcard">
-                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">{{ post.category }}</a></span>
+                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">{{ post.category.name }}</a></span>
                 <span class="date-read">{{ post.created }} <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
               </div>
             </div>
@@ -25,7 +25,7 @@
             <p> {{ post.body }}</p>
 
           </div>
-              <PopularPosts/>
+              <AllPopularPosts/>
       </div>
     </div>
   </div>
@@ -35,11 +35,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import PopularPosts from '@/components/PopularPosts'
+import AllPopularPosts from '@/components/AllPopularPosts'
 
 
 export default {
-  components: { PopularPosts },
+  components: { AllPopularPosts },
 
   computed: mapState({
     post: state => state.currentPost

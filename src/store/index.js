@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // imports of AJAX functions will go here
-import { fetchPosts, fetchPost } from '@/api'
+import { fetchPosts, fetchPost, fetchPopularPosts } from '@/api'
 
 Vue.use(Vuex)
 
@@ -23,12 +23,10 @@ const actions = {
     return fetchPost(id)
       .then((response) => context.commit('setPost', { post: response.data }))
   },
-  /*
   loadPopularPosts (context) {
-    return fetchPosts()
-    .then((response) => context.commit('setPopularPosts'))
+    return fetchPopularPosts()
+    .then((response) => context.commit('setPopularPosts', { posts: response.data }))
   },
-*/
 }
 
 const mutations = {
@@ -39,13 +37,8 @@ const mutations = {
   setPost (state, payload) {
     state.currentPost = payload.post
   },
-  setPopularPosts (state) {
-    // console.log()
-    console.log(state.posts)
-    state.popularPosts = state.posts;
-    return state.popularPosts.sort((a, b) => {
-      a[this.param] < b[this.param]
-    })
+  setPopularPosts (state, payload) {
+    state.popularPosts = payload.posts
   },
 }
 
