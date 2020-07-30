@@ -86,10 +86,10 @@ export default {
   components: { AllPopularPosts },
 
   computed: mapState({
-    posts: state => state.posts
+    posts: state => state.viewPosts.posts
   }),
   beforeMount() {
-    this.$store.dispatch('loadPosts')
+    this.$store.dispatch('viewPosts/loadPosts')
   }
 }
 </script>

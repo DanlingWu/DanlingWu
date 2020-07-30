@@ -37,10 +37,10 @@ export default {
 
   computed:
     mapState({
-      posts: state => state.popularPosts,  //posts is object,
+      posts: state => state.viewPosts.popularPosts,  //posts is object,
     }),
     beforeMount() {
-      this.$store.dispatch('loadPopularPosts')
+      this.$store.dispatch('viewPosts/loadPopularPosts')
     },
 
     methods:{

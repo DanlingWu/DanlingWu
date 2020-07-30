@@ -42,10 +42,10 @@ export default {
   components: { AllPopularPosts },
 
   computed: mapState({
-    post: state => state.currentPost
+    post: state => state.viewPosts.currentPost
   }),
   beforeMount() {
-    this.$store.dispatch('loadPost', { id: parseInt(this.$route.params.id) })
+    this.$store.dispatch('viewPosts/loadPost', { id: parseInt(this.$route.params.id) })
   }
 }
 </script>

@@ -3,6 +3,10 @@ import VueRouter from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Posts from '@/components/Posts.vue'
 import AllPopularPosts from '@/components/AllPopularPosts'
+import AdminCURD from '@/components/AdminCURD'
+import Admin from '@/components/Admin'
+import NewPost from '@/components/NewPost'
+
 
 Vue.use(VueRouter)
 
@@ -24,6 +28,21 @@ export default new VueRouter({
       path: '/AllPopularPosts',
       name: 'AllPopularPosts',
       component: AllPopularPosts
+    },
+    {
+      path: '/AdminCURD',
+      name: 'AdminCURD',
+      component: AdminCURD
+    },
+    {
+      path: '/Admin',
+      name: 'Admin',
+      component: Admin
+    },
+    {
+      path: '/NewPost',
+      name: 'NewPost',
+      component: NewPost
     },
   ]
 })

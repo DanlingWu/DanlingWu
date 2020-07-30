@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:5000/allPosts'
 const API_URL_PopularPost = 'http://127.0.0.1:5000/allPopularPostsAPI'
+const API_URL_Admin = 'http://127.0.0.1:5000/adminCURD'
 
 export function fetchPosts() {
   return axios.get(`${API_URL}/AllBlogPosts/`)
@@ -16,6 +17,28 @@ export function fetchPopularPosts() {
   return axios.get(`${API_URL_PopularPost}/AllPopularBlogPosts/`)
 }
 
-// http://127.0.0.1:5000/allPosts/
+export function fetchAdminPosts() {
+  console.log(`${API_URL_Admin}/adminCURD/`)
+  return axios.get(`${API_URL_Admin}/adminCURD/`)
+}
 
-/AllPopularBlogPosts/
+export function postNewAdminPost (post) {
+  return axios.post(`${API_URL_Admin}/adminCURD/create/`, post)
+}
+
+export function updateAdminPost (postResponse) {
+  return axios.put(`${API_URL_Admin}/adminCURD/${postResponse.id}/`, postResponse)
+}
+
+export function fetchAdminPost(postId) {
+  return axios.get(`${API_URL_Admin}/adminCURD/${postId}`)
+}
+
+export function deleteAdminPost(postId) {
+  return axios.delete(`${API_URL_Admin}/adminCURD/${postId}`)
+}
+
+// http://127.0.0.1:5000/allPosts/
+//export function postNewAdminPost (post, jwt) {
+  //return axios.post(`${API_URL_Admin}/adminCURD/create`, post, { headers: { Authorization: `Bearer: ${jwt}` } })
+//}
