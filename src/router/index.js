@@ -7,6 +7,9 @@ import AdminCURD from '@/components/AdminCURD'
 import Admin from '@/components/Admin'
 import NewPost from '@/components/NewPost'
 import EditPost from '@/components/EditPost'
+import CategoryMenu from '@/components/ImageUpload'
+import ImageUpload from '@/components/ImageUpload'
+
 
 Vue.use(VueRouter)
 
@@ -48,6 +51,16 @@ export default new VueRouter({
       path: '/EditPost/:id',
       name: 'EditPost',
       component: EditPost
+    },
+    {
+      path: '/CategoryMenu',
+      name: 'CategoryMenu',
+      component: CategoryMenu
+    },
+    {
+      path: '/ImageUpload',
+      name: 'ImageUpload',
+      component: ImageUpload
     },
   ]
 })
