@@ -18,7 +18,6 @@ export function fetchPopularPosts() {
 }
 
 export function fetchAdminPosts() {
-  console.log(`${API_URL_Admin}/adminCURD/`)
   return axios.get(`${API_URL_Admin}/adminCURD/`)
 }
 
@@ -27,7 +26,9 @@ export function postNewAdminPost (post) {
 }
 
 export function updateAdminPost (postResponse) {
-  return axios.put(`${API_URL_Admin}/adminCURD/${postResponse.id}/`, postResponse)
+  //console.log(postResponse)
+  //console.log(`${API_URL_Admin}/adminCURD/${postResponse.id}`);
+  return axios.put(`${API_URL_Admin}/adminCURD/${postResponse.id}`, postResponse)
 }
 
 export function fetchAdminPost(postId) {

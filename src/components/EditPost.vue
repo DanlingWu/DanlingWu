@@ -5,7 +5,7 @@
       <div class="col-sm-10">
 
             <form @submit.prevent="handFormSubmit(post)">
-            <p class="h4 text-center mb-4">New Post</p>
+            <p class="h4 text-center mb-4">Edit Post</p>
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" class="form-control border" v-model="post.title" name="post.title">
@@ -32,23 +32,23 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {
-      post: {},
-    }
-  },
+    computed:
+    mapState({
+      post: state => state.admin.currentAdminPost,
+    }),
+
   methods:{
    async handFormSubmit(post) {
-      await this.$store.dispatch('admin/addPost', post)
+      await this.$store.dispatch('admin/editPost', post)
       this.$router.push('/Admin')
     }
    },
   beforeMount() {
-        this.$store.dispatch('admin/loadAdminPosts')
+    this.$store.dispatch('admin/loadAdminPost', { id: parseInt(this.$route.params.id) })
+
   },
 }
 
 
 
 </script>
-<!-- emit: trigger named event(s) which in turn cause functions called listeners to be called.-->

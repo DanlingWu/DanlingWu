@@ -23,7 +23,6 @@ const actions = {
         this.loading = false
     },
     async addPost({commit}, post){
-        console.log(post.title);
         await postNewAdminPost(post);
         commit("addNewPost", post)
     },
@@ -35,7 +34,7 @@ const actions = {
     },
     async editPost({commit}, post){
         await updateAdminPost(post);
-        commit("updatePost", post)
+
     },
 }
 
@@ -48,19 +47,20 @@ const mutations = {
         state.currentAdminPost = payload.post
     },
     addNewPost: (state, post) => (
-        state.adminPosts.unshift(post)
+        //state.adminPosts.unshift(post)
+        state.adminPosts.splice(0, 0, post)
     ),
     removePost: (state, id) => (
         state.adminPosts.filter(post => post.id !== id),
         state.adminPosts.splice(post => post.id, 1) //splice() changes original array
     ),
-    updatePost(state, post){
-        state.adminPosts.splice(adminPosts.indexOf(post), 1, post)
-     },
 }
 
 const getters = {
   // reusable data accessors
+  getAdminPostById: (state, id) => {
+    return state.adminPosts.filter(post => post.id === id)
+  }
 }
 
 export default{

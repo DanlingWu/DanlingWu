@@ -23,7 +23,7 @@
               <td>{{ post.title }}</td>
               <td>{{ post.created }}</td>
               <td class="text-right">
-                <a href="#" @click.prevent="editPost(post)">Edit</a> -
+                <a :href="'/EditPost/' + post.id">Edit</a> -
                 <a href="#" @click.prevent="deletePost(post.id)">Delete</a>
               </td>
             </tr>

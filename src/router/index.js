@@ -6,7 +6,7 @@ import AllPopularPosts from '@/components/AllPopularPosts'
 import AdminCURD from '@/components/AdminCURD'
 import Admin from '@/components/Admin'
 import NewPost from '@/components/NewPost'
-
+import EditPost from '@/components/EditPost'
 
 Vue.use(VueRouter)
 
@@ -43,6 +43,11 @@ export default new VueRouter({
       path: '/NewPost',
       name: 'NewPost',
       component: NewPost
+    },
+    {
+      path: '/EditPost/:id',
+      name: 'EditPost',
+      component: EditPost
     },
   ]
 })
