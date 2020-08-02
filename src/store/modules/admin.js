@@ -11,11 +11,11 @@ const actions = {
   // asynchronous operations
     loadAdminPosts(context) {
         return fetchAdminPosts()
-            .then((response) => context.commit('setAdminPosts', { posts: response.data }))
+        .then((response) => context.commit('setAdminPosts', { posts: response.data }))
     },
     loadAdminPost(context, { id }) {
         return fetchAdminPost(id)
-            .then((response) => context.commit('setAdminPost', { post: response.data }))
+         .then((response) => context.commit('setAdminPost', { post: response.data }))
     },
     async refreshPosts () {
         this.loading = true

@@ -54,9 +54,9 @@ export default {
   methods:{
    async handleRegister(user) {
       //await mapActions(['admin/addUser'])
-      //await this.$store.dispatch('admin/addUser', user)
-      await axios.post(`${API_URL_Auth}/auth/register`, user)
-      this.$router.push('/')
+        this.$store.dispatch('auth/register', user)
+      //await axios.post(`${API_URL_Auth}/auth/register`, user)
+      this.$router.push('/Admin')
     },
    },
 }

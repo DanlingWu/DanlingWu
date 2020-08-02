@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-10">
-        <form name="form" @submit.prevent="handleLogin(user)">
+        <form name="form" @submit.prevent="login(user)">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Login',
@@ -52,23 +52,18 @@ export default {
   },
   computed:{
     ...mapState({
-        //user: state => state.auth.user,
         token: state => state.auth.token
     }),
    },
   methods:{
-    async handleLogin(user) {
-      console.log(user)
-      await this.$store.dispatch('auth/handleLogin', user)
+    async login(user) {
+      await this.$store.dispatch('auth/login', user)
       //console.log("my token is: " + localStorage.getItem('user.token'));
-      console.log(this.token);
+      this.$router.push('/Admin')
+      .catch(err => console.log(err))
 
-      this.$router.push('/')
-      //await this.$store.dispatch('admin/login', post)
-      //this.$router.push('/Admin')
     },
   },
-
 }
 </script>
 

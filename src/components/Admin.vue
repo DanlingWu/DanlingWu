@@ -1,5 +1,9 @@
 <template>
   <div class="container-fluid mt-4">
+      <div id="nav">
+     <div v-if="isLoggedIn"><a href='/' @click="logout">Logout</a></div>
+     <div v-else>You are not logged in</div>
+    </div>
     <h1 class="h1">Posts Manager</h1>
     <br>
     <a class="btn" href="/NewPost" >New Post</a>
@@ -35,22 +39,45 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
-  computed:
-    mapState({
+  computed:{
+    ...mapState({
         posts: state => state.admin.adminPosts,  //posts is object,
     }),
-  methods:
-    mapActions('admin', {
-        editPost: 'editPost',
-        addPost: 'addPost',
-        deletePost: 'deletePost',
-    }),
+    ...mapGetters('auth', ['isLoggedIn'])
+  },
+
+    //isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
+
+  methods:{
+      ...mapActions('admin', {
+          editPost: 'editPost',
+          addPost: 'addPost',
+          deletePost: 'deletePost',
+      }),
+    logout: function () {
+      this.$store.dispatch('auth/logout')
+      .then(() => {
+        this.$router.push('/')
+      })
+    },
+    created: function () { //handle expired token
+      this.$http.interceptors.response.use(undefined, function (err) {
+        return new Promise(function (resolve, reject) {
+          if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+            this.$store.dispatch(logout)
+          }
+          throw err;
+        });
+      });
+    },
+  },
 
     beforeMount() {
         this.$store.dispatch('admin/loadAdminPosts')
+        this.$store.dispatch('auth/isLoggedIn')
     },
   }
 </script>
