@@ -1,44 +1,46 @@
 
 <template>
-  <div class="col-md-12">
-    <div class="card card-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10">
 
-      <form name="form" @submit.prevent="handleRegister(user)">
+        <form name="form" @submit.prevent="handleRegister(user)">
 
-          <div class="form-group">
-            <label for="username">Username</label>
-              <input
-              v-model="user.username"
-              required
-              type="text"
-              class="form-control"
-              id="username"
-              name="user.username"
-            />
-          </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                v-model="user.username"
+                required
+                type="text"
+                class="form-control"
+                id="username"
+                name="user.username"
+                />
+            </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              v-model="user.password"
-              required
-              type="text"
-              class="form-control"
-              id="password"
-              name="user.password"
-            />
-          </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                v-model="user.password"
+                required
+                type="text"
+                class="form-control"
+                id="password"
+                name="user.password"
+                />
+            </div>
 
-          <div class="form-group">
-            <button class="btn btn-primary btn-block"  type="submit" >Sign Up</button>
-          </div>
-      </form>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block"  type="submit" >Sign Up</button>
+            </div>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+//import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
 
 const API_URL_Auth = 'http://127.0.0.1:5000/auth'
