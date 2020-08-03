@@ -60,7 +60,7 @@ export default {
     logout: function () {
       this.$store.dispatch('auth/logout')
       .then(() => {
-        this.$router.push('/')
+        this.$router.push('/Admin')
       })
     },
     created: function () { //handle expired token
@@ -77,7 +77,7 @@ export default {
 
     beforeMount() {
         this.$store.dispatch('admin/loadAdminPosts')
-        this.$store.dispatch('auth/isLoggedIn')
+        //this.$store.dispatch('auth/isLoggedIn')
     },
   }
 </script>

@@ -41,6 +41,7 @@ export default {
    async handFormSubmit(post) {
       await this.$store.dispatch('admin/editPost', post)
       this.$router.push('/Admin')
+      .catch(err => console.log(err))
     }
    },
   beforeMount() {

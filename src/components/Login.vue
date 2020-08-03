@@ -56,10 +56,10 @@ export default {
     }),
    },
   methods:{
-    async login(user) {
-      await this.$store.dispatch('auth/login', user)
+    login(user) {
+      this.$store.dispatch('auth/login', user)
       //console.log("my token is: " + localStorage.getItem('user.token'));
-      this.$router.push('/Admin')
+      .then(() => this.$router.push('/Admin'))
       .catch(err => console.log(err))
 
     },

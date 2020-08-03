@@ -6,10 +6,12 @@ import auth from './modules/auth'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+let store = new Vuex.Store({
   modules: {
     viewPosts,
     admin,
-    auth
+    auth,
   },
 })
+
+export default store

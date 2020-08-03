@@ -46,6 +46,7 @@ export default {
      console.log(post)
       await this.$store.dispatch('admin/addPost', post)
       this.$router.push('/Admin')
+      .catch(err => console.log(err))
     },
     updateCategoryId (id) {
       console.log("data: " + id)

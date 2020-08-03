@@ -84,7 +84,7 @@ const mutations = {
 
 const getters = {
   // reusable data accessors
-    isLoggedIn: state => !!state.token,
+    isLoggedIn: state => {console.log(state.token);return !!state.token},
     //isLoggedIn: (state.token !== null) ? true : false,
     authStatus: state => state.status,
 

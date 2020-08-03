@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from './index.js'
+import store from '@/store/index'
+import auth from '@/store/modules/auth'
 import HelloWorld from '@/components/HelloWorld'
 import Posts from '@/components/Posts.vue'
 import AllPopularPosts from '@/components/AllPopularPosts'
@@ -17,7 +18,7 @@ import Secure from '@/components/Secure'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+let router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -44,17 +45,23 @@ export default new VueRouter({
     {
       path: '/Admin',
       name: 'Admin',
-      component: Admin
+      component: Admin,
     },
     {
       path: '/NewPost',
       name: 'NewPost',
-      component: NewPost
+      component: NewPost,
+      meta: {
+        requiresAuth: true
+      },
     },
     {
       path: '/EditPost/:id',
       name: 'EditPost',
-      component: EditPost
+      component: EditPost,
+      meta: {
+        requiresAuth: true
+      },
     },
     {
       path: '/CategoryMenu',
@@ -84,9 +91,26 @@ export default new VueRouter({
         requiresAuth: true
       },
     },
-  ]
+  ],
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    console.log(store.state.auth.token);
+    if (store.state.auth.token) {
+      console.log(store.state.auth.token);
+      next()
+      return
+    }
+    console.log("I'm NOT logge din")
+    next('/login')
+  } else {
+    next()
+  }
+})
+
 /**
+ *
  router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.isLoggedIn) {
@@ -98,5 +122,27 @@ export default new VueRouter({
     next()
   }
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.name == 'Admin' && !store.getters.isLoggedIn) next({ name: 'Login' })
+    else next()
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(store.getters.isLoggedIn);
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    console.log(store.getters.isLoggedIn);
+    if (store.getters.isLoggedIn) {
+      console.log("I'm logge din")
+      next()
+      return
+    }
+    console.log("I'm NOT logge din")
+    next('/login')
+  } else {
+    next()
+  }
+})
  */
 
+export default router
