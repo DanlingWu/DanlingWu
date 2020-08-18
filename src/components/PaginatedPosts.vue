@@ -81,6 +81,7 @@ export default {
       pageNumber: 1,
       itemsPerPage: 4,
       currentPage: 1,
+      sortBy: ''
     };
   },
 
@@ -103,17 +104,21 @@ export default {
 
   methods: {
     changePage(index) {
+      console.log(this.sortBy);
       this.$store.dispatch("viewPosts/loadPostsPerPage", {
         pageNumber: index,
         itemsPerPage: 4,
+        sort_by: this.sortBy
       });
       this.currentPage = index;
     },
   },
   async beforeMount() {
+    this.sortBy = this.$route.query.sort_by;
     await this.$store.dispatch("viewPosts/loadPostsPerPage", {
       pageNumber: 1,
       itemsPerPage: 4,
+      sort_by: this.$route.query.sort_by
     });
   },
 };

@@ -57,11 +57,9 @@ export default {
           addPost: 'addPost',
           deletePost: 'deletePost',
       }),
-    logout: function () {
-      this.$store.dispatch('auth/logout')
-      .then(() => {
-        this.$router.push('/Admin')
-      })
+    async logout() {
+      await this.$store.dispatch('auth/logout')
+      this.$router.push('/Admin')
     },
     created: function () { //handle expired token
       this.$http.interceptors.response.use(undefined, function (err) {
@@ -77,7 +75,7 @@ export default {
 
     beforeMount() {
         this.$store.dispatch('admin/loadAdminPosts')
-        //this.$store.dispatch('auth/isLoggedIn')
+        this.$store.dispatch('auth/isLoggedIn')
     },
   }
 </script>

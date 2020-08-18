@@ -1,11 +1,13 @@
 // imports of AJAX functions will go here
-import { fetchPosts, fetchPost, fetchPopularPosts } from '@/api'
+import { fetchPosts, fetchPost, fetchPopularPosts, fetchPostsPerPage } from '@/api'
 
 const state = {
   // single source of data
   posts: [],
   currentPost: {},
-  popularPosts: {},
+  popularPosts: [],
+  itemsPerPage: [],
+  totalPages: '',
 }
 
 const actions = {
@@ -18,24 +20,43 @@ const actions = {
     return fetchPost(id)
       .then((response) => context.commit('setPost', { post: response.data }))
   },
-  loadPopularPosts (context) {
-    return fetchPopularPosts()
-    .then((response) => context.commit('setPopularPosts', { posts: response.data }))
+  async loadPopularPosts (context) {
+    let response = await fetchPopularPosts();
+    context.commit('setPopularPosts', { posts: response.data });
+  },
+  async loadPostsPerPage (context, pageObj) {
+    //console.log(itemsPerPage)
+    let response = await fetchPostsPerPage(pageObj);
+    context.commit('setPostsPerPage', { posts: response.data });
+    context.commit('seTotalPages', { posts: response.data });
   },
 }
 
 const mutations = {
   // isolated data mutations
   setPosts (state, payload) {
-    state.posts = payload.posts
+    state.posts = payload.posts || []
   },
   setPost (state, payload) {
     state.currentPost = payload.post
   },
   setPopularPosts (state, payload) {
-    state.popularPosts = payload.posts
+    if (payload.posts === null) {
+      state.popularPosts = []
+    } else {
+      state.popularPosts = payload.posts
+    }
   },
-
+  setPostsPerPage (state, payload) {
+    if (payload.items === null) {
+      state.itemsPerPage = []
+    } else {
+      state.itemsPerPage = payload.posts.items
+    }
+  },
+  seTotalPages (state, payload) {
+    state.totalPages = payload.posts.pages
+  },
 }
 
 const getters = {

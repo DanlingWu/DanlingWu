@@ -13,6 +13,10 @@ export function fetchPost(postId) {
   return axios.get(`${API_URL}/AllBlogPosts/${postId}`)
 }
 
+export function fetchPostsPerPage(pageObj) {
+  return axios.get(`${API_URL}/AllBlogPosts/page/?sort_by=${pageObj.sort_by}&page=${pageObj.pageNumber}&per_page=${pageObj.itemsPerPage}`)
+}
+
 export function fetchPopularPosts() {
   //console.log(`${API_URL_PopularPost}/AllPopularBlogPosts/`)
   return axios.get(`${API_URL_PopularPost}/AllPopularBlogPosts/`)

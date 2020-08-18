@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store/index'
-import auth from '@/store/modules/auth'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/components/Home'
 import Posts from '@/components/Posts.vue'
 import AllPopularPosts from '@/components/AllPopularPosts'
 import AdminCURD from '@/components/AdminCURD'
@@ -14,6 +13,8 @@ import ImageUpload from '@/components/ImageUpload'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Secure from '@/components/Secure'
+import Pagenation from '@/components/Pagenation'
+import PaginatedPosts from '@/components/PaginatedPosts'
 
 
 Vue.use(VueRouter)
@@ -24,8 +25,8 @@ let router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Home',
+      component: Home
     },
     {
       path: '/posts/:id',
@@ -33,8 +34,8 @@ let router = new VueRouter({
       component: Posts
     },
     {
-      path: '/AllPopularPosts',
-      name: 'AllPopularPosts',
+      path: '/AllPopularPostsX',
+      name: 'AllPopularPostsX',
       component: AllPopularPosts
     },
     {
@@ -90,6 +91,21 @@ let router = new VueRouter({
       meta: {
         requiresAuth: true
       },
+    },
+    {
+      path: '/PaginatedPosts',
+      name: 'PaginatedPosts',
+      component: PaginatedPosts,
+    },
+    {
+      path: '/RecentPosts',
+      name: 'RecentPosts',
+      component: PaginatedPosts,
+    },
+    {
+      path: '/AllPopularPosts',
+      name: '/AllPopularPosts',
+      component: PaginatedPosts,
     },
   ],
 })

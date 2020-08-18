@@ -7,7 +7,7 @@
           <div class="col-lg-8 single-content" >
 
             <p class="mb-5">
-              <img src="/assets/images/big_img_1.jpg" alt="Image" class="img-fluid">
+              <img :src="'http://127.0.0.1:5000/images/header_image_'+ post.id + '.jpg'" alt="Image" class="img-fluid">
             </p>
             <h1 class="mb-4">
               <a>{{ post.title }}</a>
@@ -25,7 +25,7 @@
             <p> {{ post.body }}</p>
 
           </div>
-              <AllPopularPosts/>
+              <AllPopularPosts :limit=3 />
       </div>
     </div>
   </div>

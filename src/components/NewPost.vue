@@ -4,11 +4,16 @@
     <div class="row">
       <div class="col-sm-10">
 
-            <form @submit.prevent="handFormSubmit(post)">
+            <form @submit.prevent="handleFormSubmit2(post)" id="addPostForm">
             <p class="h4 text-center mb-4">New Post</p>
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" class="form-control border" v-model="post.title" name="post.title">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="title">Headline Image</label>
+                <input type="file" id="header_image" class="form-control border" ref="header_image" name="header_image">
             </div>
             <br>
             <div class="form-group">
@@ -32,17 +37,19 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import CategoryMenu from '@/components/CategoryMenu'
+import axios from 'axios'
 
 export default {
   data() {
     return {
       post: {},
-      category_id: ''
+      category_id: '',
+      file: ''
     }
   },
   components: { CategoryMenu },
   methods:{
-   async handFormSubmit(post) {
+    async handleFormSubmit(post) {
      console.log(post)
       await this.$store.dispatch('admin/addPost', post)
       this.$router.push('/Admin')
@@ -51,8 +58,29 @@ export default {
     updateCategoryId (id) {
       console.log("data: " + id)
       this.post.category_id = id
+    },
+    async handleFormSubmit2(post) {
+     // The this.$refs.file refers to the ref attribute on the the input[type="file"]
+     this.post['header_image'] =  new Blob([ JSON.stringify(this.$refs.header_image.files[0]) ], {
+      type: 'application/json'
+     });
+     //post.append('header_image', this.file);
+      var form = document.forms.addPostForm;
+      var formData = new FormData(form);
+      console.log(formData.get('header_image'))
+      axios.post('http://127.0.0.1:5000/adminCURD/adminCURD/create/', formData,{
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then(res => {
+        console.log('SUCCESS!');
+        console.log({res});
+      }).catch(err => {
+        console.error({err});
+      });
     }
-   },
+  },
   beforeMount() {
         this.$store.dispatch('admin/loadAdminPosts')
   },
