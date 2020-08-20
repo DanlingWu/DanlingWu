@@ -1,11 +1,12 @@
 // imports of AJAX functions will go here
-import { fetchPosts, fetchPost, fetchPopularPosts, fetchPostsPerPage } from '@/api'
+import { fetchPosts, fetchPost, fetchPopularPosts, fetchRecentPosts, fetchPostsPerPage } from '@/api'
 
 const state = {
   // single source of data
   posts: [],
   currentPost: {},
   popularPosts: [],
+  recentPosts: [],
   itemsPerPage: [],
   totalPages: '',
 }
@@ -23,6 +24,10 @@ const actions = {
   async loadPopularPosts (context) {
     let response = await fetchPopularPosts();
     context.commit('setPopularPosts', { posts: response.data });
+  },
+  async loadRecentPosts (context, pageObj) {
+    let response = await fetchRecentPosts(pageObj);
+    context.commit('setRecentPosts', { posts: response.data });
   },
   async loadPostsPerPage (context, pageObj) {
     //console.log(itemsPerPage)
@@ -45,6 +50,13 @@ const mutations = {
       state.popularPosts = []
     } else {
       state.popularPosts = payload.posts
+    }
+  },
+  setRecentPosts (state, payload) {
+    if (payload.posts === null) {
+      state.recentPosts = []
+    } else {
+      state.recentPosts = payload.posts.items
     }
   },
   setPostsPerPage (state, payload) {

@@ -1,13 +1,13 @@
 <template>
-  <div v-if="posts">
+  <div v-if="recentPosts">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="section-title">
-            <span class="caption d-block big">All Popular Posts</span>
+            <span class="caption d-block big">All Recent Posts</span>
           </div>
 
-          <div class="post-entry-2 d-flex" v-for="(post, index) in posts" :key="index">
+          <div class="post-entry-2 d-flex" v-for="(post, index) in recentPosts" :key="index">
             <div
               class="thumbnail order-md-2"
               style="background-image: url('assets/images/img_h_4.jpg')"
@@ -30,9 +30,8 @@
               </div>
             </div>
           </div>
-
           <p>
-            <a href="/AllPopularPosts/?sort_by=popularity" class="more">
+            <a href="/RecentPosts/?sort_by=recent" class="more">
               See All Popular
               <span class="icon-keyboard_arrow_right"></span>
             </a>
@@ -47,31 +46,22 @@
 import { mapState } from "vuex";
 
 export default {
-  props: {"limit": Number},
-  computed: mapState({
-    posts(state) {
-      //console.log("Mapping posts", state.viewPosts.popularPosts, this.limit);
-      // try {
-        return state.viewPosts.popularPosts.slice(0, this.limit);
-      // } catch (TypeError) {
-      //   return [];
-      // }
-    }, //posts is object,
-  }),
+  props: {"limit": Number,
+          "sortBy": String,
+          },
+  computed: {
+  ...mapState({
+     recentPosts: (state) => state.viewPosts.recentPosts,
+  })
+},
   async beforeMount() {
-   // console.log("before mount");
-    await this.$store.dispatch("viewPosts/loadPopularPosts");
-    //console.log("after load");
-  },
-
-  methods: {
-    // limitedPosts() {
-    //   console.log(this.posts)
-    //   if (this.limit === undefined) {
-    //     return this.posts;
-    //   }
-    //   return this.posts.slice(0, this.limit);
-    // },
+    console.log("before mount");
+      await this.$store.dispatch("viewPosts/loadRecentPosts", {
+      pageNumber: 1,
+      itemsPerPage: 4,
+      sort_by: "recent"
+    });
+    console.log("after load");
   },
 };
 </script>

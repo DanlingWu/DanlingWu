@@ -5,22 +5,22 @@
       -->
       <div class="py-0">
         <div class="container">
-          <div class="half-post-entry d-block d-lg-flex bg-light" v-if="posts.length > 0">
+          <div class="half-post-entry d-block d-lg-flex bg-light" v-if="recentPosts.length > 0">
             <div class="img-bg" style="background-image: url('assets/images/big_img_1.jpg')"></div>
             <div class="contents">
-              <span class="caption">{{posts[0].title}}</span>
+              <span class="caption">{{recentPosts[0].title}}</span>
               <h2>
-                <a :href="'/Posts/' + posts[0].id">{{posts[0].title}}</a>
+                <a :href="'/Posts/' + recentPosts[0].id">{{recentPosts[0].title}}</a>
               </h2>
-              <p class="mb-3">{{ posts[0].body }}</p>
+              <p class="mb-3">{{ recentPosts[0].body }}</p>
 
               <div class="post-meta">
                 <span class="d-block">
                   <a href="#">Dave Rogers</a> in
-                  <a href="#">{{ posts[0].category.name }}</a>
+                  <a href="#">{{ recentPosts[0].category.name }}</a>
                 </span>
                 <span class="date-read">
-                  {{ posts[0].created }}
+                  {{ recentPosts[0].created }}
                   <span class="mx-1">&bullet;</span> 3 min read
                   <span class="icon-star2"></span>
                 </span>
@@ -39,22 +39,22 @@
               <h2>Recent Posts</h2>
             </div>
             <div class="row">
-              <div class="col-md-6" v-if="posts.length > 0">
+              <div class="col-md-6" v-if="recentPosts.length > 0">
                 <div class="post-entry-1">
                   <a href="post-single.html">
                     <img src="assets/images/img_h_1.jpg" alt="Image" class="img-fluid" />
                   </a>
                   <h2>
-                    <a href="blog-single.html">{{ posts[0].title }}</a>
+                    <a href="blog-single.html">{{ recentPosts[0].title }}</a>
                   </h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
                   <div class="post-meta">
                     <span class="d-block">
                       <a href="#">Dave Rogers</a> in
-                      <a href="#">{{ posts[0].category.name }}</a>
+                      <a href="#">{{ recentPosts[0].category.name }}</a>
                     </span>
                     <span class="date-read">
-                      {{ posts[0].created }}
+                      {{ recentPosts[0].created }}
                       <span class="mx-1">&bullet;</span> 3 min read
                       <span class="icon-star2"></span>
                     </span>
@@ -64,7 +64,7 @@
               <div class="col-md-6">
                 <div
                   class="post-entry-2 d-flex bg-light"
-                  v-for="(post, index) in posts.slice(1, 4)"
+                  v-for="(post, index) in recentPosts.slice(1, 4)"
                   :key="index"
                   :post="post"
                 >
@@ -94,8 +94,9 @@
             </a>
           </div>
           <div class="col-lg-3">
-            <AllPopularPosts :limit="3" v-if="posts.length > 0" />
+            <AllPopularPosts :limit="3" v-if="recentPosts.length > 0" />
           </div>
+
         </div>
       </div>
     </div>
@@ -111,10 +112,17 @@ export default {
   components: { AllPopularPosts, PaginatedPosts},
 
   computed: mapState({
-    posts: (state) => state.viewPosts.posts,
+    //posts: (state) => state.viewPosts.posts,
+    recentPosts: (state) => state.viewPosts.recentPosts,
+
   }),
-  beforeMount() {
-    this.$store.dispatch("viewPosts/loadPosts");
+  async beforeMount() {
+    await this.$store.dispatch("viewPosts/loadPosts");
+    await this.$store.dispatch("viewPosts/loadRecentPosts", {
+      pageNumber: 1,
+      itemsPerPage: 4,
+      sort_by: "recent"
+    });
   },
 };
 </script>

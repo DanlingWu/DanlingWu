@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:5000/allPosts'
 const API_URL_PopularPost = 'http://127.0.0.1:5000/allPopularPostsAPI'
+const API_URL_RecentPost = 'http://127.0.0.1:5000/recentPostsAPI'
 const API_URL_Admin = 'http://127.0.0.1:5000/adminCURD'
 const API_URL_Auth = 'http://127.0.0.1:5000/auth'
 
@@ -17,9 +18,17 @@ export function fetchPostsPerPage(pageObj) {
   return axios.get(`${API_URL}/AllBlogPosts/page/?sort_by=${pageObj.sort_by}&page=${pageObj.pageNumber}&per_page=${pageObj.itemsPerPage}`)
 }
 
+export function fetchRecentPosts(pageObj) {
+  return axios.get(`${API_URL}/AllBlogPosts/page/?sort_by=${pageObj.sort_by}&page=${pageObj.pageNumber}&per_page=${pageObj.itemsPerPage}`)
+}
+
 export function fetchPopularPosts() {
   //console.log(`${API_URL_PopularPost}/AllPopularBlogPosts/`)
   return axios.get(`${API_URL_PopularPost}/AllPopularBlogPosts/`)
+}
+
+export function fetchRecentPostsX() {
+  return axios.get(`${API_URL_RecentPost}/RecentBlogPosts/`)
 }
 
 export function fetchAdminPosts() {
