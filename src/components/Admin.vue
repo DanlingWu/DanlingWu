@@ -44,13 +44,10 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   computed:{
     ...mapState({
-        posts: state => state.admin.adminPosts,  //posts is object,
+        posts: state => state.admin.adminPosts,
     }),
     ...mapGetters('auth', ['isLoggedIn'])
   },
-
-    //isLoggedIn : function(){ return this.$store.getters.isLoggedIn},
-
   methods:{
       ...mapActions('admin', {
           editPost: 'editPost',

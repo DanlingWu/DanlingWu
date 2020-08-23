@@ -37,10 +37,8 @@
 import { mapState } from 'vuex'
 import AllPopularPosts from '@/components/AllPopularPosts'
 
-
 export default {
   components: { AllPopularPosts },
-
   computed: mapState({
     post: state => state.viewPosts.currentPost
   }),

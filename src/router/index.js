@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import store from '@/store/index'
 import Home from '@/components/Home'
 import Posts from '@/components/Posts.vue'
-import AllPopularPosts from '@/components/AllPopularPosts'
 import AdminCURD from '@/components/AdminCURD'
 import Admin from '@/components/Admin'
 import NewPost from '@/components/NewPost'
@@ -13,7 +12,6 @@ import ImageUpload from '@/components/ImageUpload'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Secure from '@/components/Secure'
-import Pagenation from '@/components/Pagenation'
 import PaginatedPosts from '@/components/PaginatedPosts'
 
 
@@ -32,11 +30,6 @@ let router = new VueRouter({
       path: '/posts/:id',
       name: 'Posts',
       component: Posts
-    },
-    {
-      path: '/AllPopularPostsX',
-      name: 'AllPopularPostsX',
-      component: AllPopularPosts
     },
     {
       path: '/AdminCURD',
@@ -124,41 +117,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
-/**
- *
- router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters.isLoggedIn) {
-      next('/Admin')
-      return
-    }
-    next('/login')
-  } else {
-    next()
-  }
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.name == 'Admin' && !store.getters.isLoggedIn) next({ name: 'Login' })
-    else next()
-})
-
-router.beforeEach((to, from, next) => {
-  console.log(store.getters.isLoggedIn);
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-    console.log(store.getters.isLoggedIn);
-    if (store.getters.isLoggedIn) {
-      console.log("I'm logge din")
-      next()
-      return
-    }
-    console.log("I'm NOT logge din")
-    next('/login')
-  } else {
-    next()
-  }
-})
- */
 
 export default router

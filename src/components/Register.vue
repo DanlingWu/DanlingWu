@@ -40,10 +40,7 @@
 </template>
 
 <script>
-//import { mapState, mapActions } from 'vuex'
 import axios from 'axios'
-
-const API_URL_Auth = 'http://127.0.0.1:5000/auth'
 
 export default {
   data() {
@@ -53,9 +50,7 @@ export default {
   },
   methods:{
    async handleRegister(user) {
-      //await mapActions(['admin/addUser'])
-        this.$store.dispatch('auth/register', user)
-      //await axios.post(`${API_URL_Auth}/auth/register`, user)
+      await this.$store.dispatch('auth/register', user)
       this.$router.push('/Admin')
     },
    },

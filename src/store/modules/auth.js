@@ -1,4 +1,3 @@
-// imports of AJAX functions will go here
 import { postLoginAdminUser, postRegisterAdminUser, fetchLogoutAdminUser} from '@/api'
 import axios from 'axios'
 
@@ -17,11 +16,10 @@ const actions = {
             .then(resp => {
                 const token = resp.data.token
                 const user = resp.data.user
-                //console.log(resp.data.token);
                 console.log(token);
                 localStorage.setItem('token', resp.data.token)
                 console.log(token);
-                axios.defaults.headers['X-API-KEY'] = resp.data.token // my api X-API-KEY.
+                axios.defaults.headers['X-API-KEY'] = resp.data.token
                 commit('auth_success', token, user)
                 resolve(resp);
             })
@@ -40,7 +38,6 @@ const actions = {
                 const token = resp.data.token
                 const user = resp.data.user
                 localStorage.setItem('token', token)
-                // Add the following line:
                 axios.defaults.headers['X-API-KEY'] = resp.data.token
                 commit('auth_success', token, user)
                 resolve(resp)
@@ -63,8 +60,6 @@ const actions = {
 }
 
 const mutations = {
-  // isolated data mutations
-
     auth_request(state){
         state.status = 'loading'
     },
@@ -97,10 +92,3 @@ export default{
     mutations,
     getters,
 }
-
-
-/**
-    setAdminUser: (state, token) => (
-        state.token = token
-    ),
- */

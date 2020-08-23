@@ -23,7 +23,7 @@
                   <a href="#">{{ item.category.name }}</a>
                 </span>
                 <span class="date-read">
-                  Jun 14
+                  <timeago :datetime="item.created"></timeago>
                   <span class="mx-1">&bullet;</span> 3 min read
                   <span class="icon-star2"></span>
                 </span>

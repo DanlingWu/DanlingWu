@@ -52,7 +52,7 @@ const mutations = {
     ),
     removePost: (state, id) => (
         state.adminPosts.filter(post => post.id !== id),
-        state.adminPosts.splice(post => post.id, 1) //splice() changes original array
+        state.adminPosts.splice(post => post.id, 1)
     ),
 }
 

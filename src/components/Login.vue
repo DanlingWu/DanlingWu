@@ -58,7 +58,6 @@ export default {
   methods:{
     login(user) {
       this.$store.dispatch('auth/login', user)
-      //console.log("my token is: " + localStorage.getItem('user.token'));
       .then(() => this.$router.push('/Admin'))
       .catch(err => console.log(err))
 
@@ -66,32 +65,3 @@ export default {
   },
 }
 </script>
-
-<!--
-import axios from 'axios'
-
-const API_URL_Auth = 'http://127.0.0.1:5000/auth'
-
-  methods:{
-    async handleLogin(user) {
-      console.log(user)
-      let res = await axios.post(`${API_URL_Auth}/auth/login`, user)
-      console.log(res.data.token)
-      localStorage.setItem('user', JSON.stringify(res.data));
-      console.log("my token is: " + localStorage.getItem('userToken'));
-
-      this.$router.push('/')
-      //await this.$store.dispatch('admin/login', post)
-      //this.$router.push('/Admin')
-    },
-  },
-
-     beforeMount() {
-      console.log("my token is: " + user);
-      this.$store.dispatch('auth/loadAdminUser')
-      console.log("my token is: " + user);
-    },
-        ...mapActions('auth', {
-      handleLogin: 'handleLogin'
-    }),
-  -->
