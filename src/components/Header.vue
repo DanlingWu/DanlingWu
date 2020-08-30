@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 col-lg-6 d-flex">
-          <a href="/" class="site-logo">Blog</a>
+          <a href="/" class="site-logo">DW's Blog</a>
         </div>
 
         <div class="col-12 col-lg-6 ml-auto d-flex">

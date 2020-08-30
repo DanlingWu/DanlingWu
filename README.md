@@ -1,4 +1,4 @@
-# client
+# My Blog Client
 
 ## Project setup
 ```
