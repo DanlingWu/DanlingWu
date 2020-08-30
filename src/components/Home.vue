@@ -17,7 +17,7 @@
 
               <div class="post-meta">
                 <span class="d-block">
-                  <a href="#">Dave Rogers</a> in
+                  <a href="#">DW</a> in
                   <a href="#">{{ recentPosts[0].category.name }}</a>
                 </span>
                 <span class="date-read">
@@ -79,7 +79,7 @@
                     </h2>
                     <div class="post-meta">
                       <span class="d-block">
-                        <a href="#">Dave Rogers</a> in
+                        <a href="#">DW</a> in
                         <a href="#">{{ post.category.name }}</a>
                       </span>
                       <span class="date-read">
@@ -96,7 +96,7 @@
             </a>
           </div>
           <div class="col-lg-3">
-            <AllPopularPosts :limit="3" v-if="recentPosts.length > 0" />
+            <PopularPosts :limit="3" v-if="recentPosts.length > 0" />
           </div>
         </div>
       </div>
@@ -106,11 +106,11 @@
 
 <script>
 import { mapState } from "vuex";
-import AllPopularPosts from "@/components/AllPopularPosts";
+import PopularPosts from "@/components/PopularPosts";
 import PaginatedPosts from "@/components/PaginatedPosts";
 
 export default {
-  components: { AllPopularPosts, PaginatedPosts },
+  components: { PopularPosts, PaginatedPosts },
 
   computed: mapState({
     recentPosts: (state) => state.viewPosts.recentPosts,

@@ -19,7 +19,7 @@
               <p class="mb-3">{{ post.body.slice(0,20) + "..." }}</p>
               <div class="post-meta">
                 <span class="d-block">
-                  <a href="#">Dave Rogers</a> in
+                  <a href="#">DW</a> in
                   <a href="#">{{ post.category.name }}</a>
                 </span>
                 <span class="date-read">
@@ -30,7 +30,7 @@
           </div>
 
           <p>
-            <a href="/AllPopularPosts/?sort_by=popular" class="more">
+            <a href="/PopularPosts/?sort_by=popular" class="more">
               See All Popular
               <span class="icon-keyboard_arrow_right"></span>
             </a>

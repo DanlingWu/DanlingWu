@@ -20,7 +20,7 @@
               </div>
               <div class="vcard">
                 <span class="d-block">
-                  <a href="#">Dave Rogers</a> in
+                  <a href="#">DW</a> in
                   <a href="#">{{ post.category.name }}</a>
                 </span>
                 <timeago :datetime="post.created"></timeago>
@@ -29,7 +29,7 @@
 
             <p>{{ post.body }}</p>
           </div>
-          <AllPopularPosts :limit="3" />
+          <PopularPosts :limit="3" />
         </div>
       </div>
     </div>
@@ -38,10 +38,10 @@
 
 <script>
 import { mapState } from "vuex";
-import AllPopularPosts from "@/components/AllPopularPosts";
+import PopularPosts from "@/components/PopularPosts";
 
 export default {
-  components: { AllPopularPosts },
+  components: { PopularPosts },
   computed: mapState({
     post: (state) => state.viewPosts.currentPost,
   }),

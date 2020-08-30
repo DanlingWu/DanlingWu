@@ -19,7 +19,7 @@
               <p class="mb-3">{{ item.body.slice(0,400) + " ..." }}</p>
               <div class="post-meta">
                 <span class="d-block">
-                  <a href="#">Dave Rogers</a> in
+                  <a href="#">DW</a> in
                   <a href="#">{{ item.category.name }}</a>
                 </span>
                 <span class="date-read">
