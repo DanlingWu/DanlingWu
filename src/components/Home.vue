@@ -75,7 +75,7 @@
                   ></div>
                   <div class="contents">
                     <h2>
-                      <a :href="'/Posts/' + recentPosts[0].id">{{ post.title }}</a>
+                      <a :href="'/Posts/' + post.id">{{ post.title }}</a>
                     </h2>
                     <div class="post-meta">
                       <span class="d-block">
