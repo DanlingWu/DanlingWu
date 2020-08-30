@@ -15,9 +15,7 @@ const actions = {
             .then(resp => {
                 const token = resp.data.token
                 const user = resp.data.user
-                console.log(token);
                 localStorage.setItem('token', resp.data.token)
-                console.log(token);
                 axios.defaults.headers['X-API-KEY'] = resp.data.token
                 commit('auth_success', token, user)
                 resolve(resp);
@@ -77,8 +75,12 @@ const mutations = {
 }
 
 const getters = {
-  // reusable data accessors
-    isLoggedIn: state => {console.log(state.token);return !!state.token},
+    isLoggedIn: state => {
+        if (state.token) {
+            return true;
+        }
+        return false;
+    },
     authStatus: state => state.status,
 
 }

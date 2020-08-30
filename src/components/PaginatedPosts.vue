@@ -102,7 +102,6 @@ export default {
 
   methods: {
     changePage(index) {
-      console.log(this.sortBy);
       this.$store.dispatch("viewPosts/loadPostsPerPage", {
         pageNumber: index,
         itemsPerPage: 4,

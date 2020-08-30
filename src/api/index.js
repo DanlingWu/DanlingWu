@@ -23,7 +23,6 @@ export function fetchAdminPosts() {
 }
 
 export function postNewAdminPost (post) {
-  console.log(post)
   return axios.post(`${API_URL_Admin}/adminCURD/create/`, post, {
     headers: {
       'Content-Type': 'multipart/form-data'
@@ -49,7 +48,6 @@ export function postLoginAdminUser(user){
 }
 
 export function fetchLogoutAdminUser(user){
-  console.log(user)
   return axios.post(`${API_URL_Auth}/auth/logout`, user)
 }
 
