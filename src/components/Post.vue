@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 single-content">
-            <p class="mb-5">
+            <p class="mb-5" v-if="post.id">
               <img
                 :src="'http://127.0.0.1:5000/images/header_image_'+ post.id + '.jpg'"
                 alt="Image"
@@ -21,7 +21,7 @@
               <div class="vcard">
                 <span class="d-block">
                   <a href="#">DW</a> in
-                  <a href="#">{{ post.category.name }}</a>
+                  <a href="#" v-if="post.category">{{ post.category.name }}</a>
                 </span>
                 <timeago :datetime="post.created"></timeago>
               </div>
