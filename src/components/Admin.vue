@@ -9,7 +9,6 @@
     <a class="btn" href="/NewPost" >New Post</a>
     <br>
     <br>
-    <!--<b-alert :show="loading" variant="info">Loading...</b-alert>-->
     <b-row>
       <b-col>
         <table class="table table-striped">

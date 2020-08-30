@@ -16,7 +16,7 @@
               <h2>
                 <a :href="'/Posts/' + item.id">{{ item.title }}</a>
               </h2>
-              <p class="mb-3">{{ item.body }}</p>
+              <p class="mb-3">{{ item.body.slice(0,400) + " ..." }}</p>
               <div class="post-meta">
                 <span class="d-block">
                   <a href="#">Dave Rogers</a> in
@@ -24,8 +24,6 @@
                 </span>
                 <span class="date-read">
                   <timeago :datetime="item.created"></timeago>
-                  <span class="mx-1">&bullet;</span> 3 min read
-                  <span class="icon-star2"></span>
                 </span>
               </div>
             </div>
@@ -81,7 +79,7 @@ export default {
       pageNumber: 1,
       itemsPerPage: 4,
       currentPage: 1,
-      sortBy: ''
+      sortBy: "",
     };
   },
 
@@ -108,7 +106,7 @@ export default {
       this.$store.dispatch("viewPosts/loadPostsPerPage", {
         pageNumber: index,
         itemsPerPage: 4,
-        sort_by: this.sortBy
+        sort_by: this.sortBy,
       });
       this.currentPage = index;
     },
@@ -118,7 +116,7 @@ export default {
     await this.$store.dispatch("viewPosts/loadPostsPerPage", {
       pageNumber: 1,
       itemsPerPage: 4,
-      sort_by: this.$route.query.sort_by
+      sort_by: this.$route.query.sort_by,
     });
   },
 };

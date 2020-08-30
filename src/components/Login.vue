@@ -24,10 +24,7 @@
             />
           </div>
           <div class="form-group">
-                        <input
-              v-model="user.token"
-              type="hidden"
-            />
+            <input v-model="user.token" type="hidden" />
             <button type="submit" class="btn btn-primary btn-block" :disabled="loading">
               <span v-show="loading" class="spinner-border spinner-border-sm"></span>
               <span>Login</span>
@@ -40,28 +37,28 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
       user: {},
       loading: false,
-    }
+    };
   },
-  computed:{
+  computed: {
     ...mapState({
-        token: state => state.auth.token
+      token: (state) => state.auth.token,
     }),
-   },
-  methods:{
+  },
+  methods: {
     login(user) {
-      this.$store.dispatch('auth/login', user)
-      .then(() => this.$router.push('/Admin'))
-      .catch(err => console.log(err))
-
+      this.$store
+        .dispatch("auth/login", user)
+        .then(() => this.$router.push("/Admin"))
+        .catch((err) => console.log(err));
     },
   },
-}
+};
 </script>

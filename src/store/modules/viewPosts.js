@@ -13,15 +13,15 @@ const actions = {
     return fetchPost(id)
       .then((response) => context.commit('setPost', { post: response.data }))
   },
-  async loadPopularPosts (context, pageObj) {
+  async loadPopularPosts(context, pageObj) {
     let response = await fetchPostsPerPage(pageObj);
     context.commit('setPopularPosts', { posts: response.data });
   },
-  async loadRecentPosts (context, pageObj) {
+  async loadRecentPosts(context, pageObj) {
     let response = await fetchPostsPerPage(pageObj);
     context.commit('setRecentPosts', { posts: response.data });
   },
-  async loadPostsPerPage (context, pageObj) {
+  async loadPostsPerPage(context, pageObj) {
     let response = await fetchPostsPerPage(pageObj);
     context.commit('setPostsPerPage', { posts: response.data });
     context.commit('seTotalPages', { posts: response.data });
@@ -29,31 +29,31 @@ const actions = {
 }
 
 const mutations = {
-  setPost (state, payload) {
+  setPost(state, payload) {
     state.currentPost = payload.post || []
   },
-  setPopularPosts (state, payload) {
+  setPopularPosts(state, payload) {
     if (payload.posts === null) {
       state.popularPosts = []
     } else {
       state.popularPosts = payload.posts.items
     }
   },
-  setRecentPosts (state, payload) {
+  setRecentPosts(state, payload) {
     if (payload.posts === null) {
       state.recentPosts = []
     } else {
       state.recentPosts = payload.posts.items
     }
   },
-  setPostsPerPage (state, payload) {
+  setPostsPerPage(state, payload) {
     if (payload.items === null) {
       state.itemsPerPage = []
     } else {
       state.itemsPerPage = payload.posts.items
     }
   },
-  seTotalPages (state, payload) {
+  seTotalPages(state, payload) {
     state.totalPages = payload.posts.pages
   },
 }
@@ -63,9 +63,9 @@ const getters = {
 }
 
 export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 }

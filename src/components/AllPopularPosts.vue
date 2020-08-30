@@ -16,7 +16,7 @@
               <h2>
                 <a :href="'/Posts/' + post.id">{{ post.title }}</a>
               </h2>
-              <p class="mb-3">{{ post.body.slice(0,20) + "..."  }}</p>
+              <p class="mb-3">{{ post.body.slice(0,20) + "..." }}</p>
               <div class="post-meta">
                 <span class="d-block">
                   <a href="#">Dave Rogers</a> in
@@ -24,8 +24,6 @@
                 </span>
                 <span class="date-read">
                   <timeago :datetime="post.created"></timeago>
-                  <span class="mx-1">&bullet;</span> 3 min read
-                  <span class="icon-star2"></span>
                 </span>
               </div>
             </div>
@@ -47,10 +45,10 @@
 import { mapState } from "vuex";
 
 export default {
-  props: {"limit": Number},
+  props: { limit: Number },
   computed: mapState({
     posts(state) {
-        return state.viewPosts.popularPosts.slice(0, this.limit);
+      return state.viewPosts.popularPosts.slice(0, this.limit);
     },
   }),
 
@@ -58,7 +56,7 @@ export default {
     await this.$store.dispatch("viewPosts/loadPopularPosts", {
       pageNumber: 1,
       itemsPerPage: 4,
-      sort_by: "popular"
+      sort_by: "popular",
     });
   },
 };

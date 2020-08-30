@@ -45,7 +45,6 @@ export function deleteAdminPost(postId) {
 
 // Admin login/register
 export function postLoginAdminUser(user){
-  //console.log(user)
   return axios.post(`${API_URL_Auth}/auth/login`, user)
 }
 

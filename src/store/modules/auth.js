@@ -5,7 +5,6 @@ const state= {
     status: '',
     token: localStorage.getItem('token') || '',
     user : {},
-    //isLoggedIn: false,
 }
 
 const actions = {
@@ -80,7 +79,6 @@ const mutations = {
 const getters = {
   // reusable data accessors
     isLoggedIn: state => {console.log(state.token);return !!state.token},
-    //isLoggedIn: (state.token !== null) ? true : false,
     authStatus: state => state.status,
 
 }
