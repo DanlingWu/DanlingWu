@@ -14,6 +14,10 @@ export function fetchPost(postId) {
 }
 
 export function fetchPostsPerPage(pageObj) {
+  if(pageObj.category_id){
+    pageObj.sort_by = "recent"
+    return axios.get(`${API_URL}/AllBlogPosts/page/?sort_by=${pageObj.sort_by}&page=${pageObj.pageNumber}&per_page=${pageObj.itemsPerPage}&category_id=${pageObj.category_id}`)
+  }
   return axios.get(`${API_URL}/AllBlogPosts/page/?sort_by=${pageObj.sort_by}&page=${pageObj.pageNumber}&per_page=${pageObj.itemsPerPage}`)
 }
 

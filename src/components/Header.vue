@@ -38,10 +38,10 @@
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                 <li class="active">
                   <router-link to="/" class="navbar-item">Home</router-link>
-                  <router-link to="/Food" class="navbar-item">Food</router-link>
-                  <router-link to="/Food" class="navbar-item">Cookery</router-link>
-                  <router-link to="/Food" class="navbar-item">Travel</router-link>
-                  <router-link to="/Food" class="navbar-item">Health</router-link>
+                  <a href="/category/?category_id=1" class="navbar-item">Food</a>
+                  <a href="/category/?category_id=2" class="navbar-item">Cookery</a>
+                  <a href="/category/?category_id=3" class="navbar-item">Travel</a>
+                  <a href="/category/?category_id=4" class="navbar-item">Health</a>
                 </li>
               </ul>
             </nav>

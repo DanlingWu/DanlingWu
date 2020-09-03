@@ -82,6 +82,26 @@ let router = new VueRouter({
       name: '/PopularPosts',
       component: PaginatedPosts,
     },
+    {
+      path: '/Category',
+      name: 'Food',
+      component: PaginatedPosts,
+    },
+    {
+      path: '/Category',
+      name: 'Cookery',
+      component: PaginatedPosts,
+    },
+    {
+      path: '/Category',
+      name: 'Travel',
+      component: PaginatedPosts,
+    },
+    {
+      path: '/Category',
+      name: 'Health',
+      component: PaginatedPosts,
+    },
   ],
 })
 

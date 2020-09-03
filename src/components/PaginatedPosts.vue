@@ -3,8 +3,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="section-title">
-            <span class="caption d-block big">All Recent Posts</span>
+          <div class="section-title"  v-if="this.categoryId">
+            <span class="caption d-block big" >All {{this.categoryMap[this.categoryId]}} Posts</span>
+
+          </div>
+            <div class="section-title"  v-else>
+            <span class="caption d-block big" >All {{this.sortBy}} Posts</span>
           </div>
 
           <div class="post-entry-2 d-flex" v-for="(item, index) in items" :key="index">
@@ -72,14 +76,22 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import CategoryMenu from "@/components/CategoryMenu";
 
 export default {
   data() {
     return {
+      categoryMap: {
+        1: "Food",
+        2: "Cookery",
+        3: "Travel",
+        4: "Health",
+      },
       pageNumber: 1,
       itemsPerPage: 4,
       currentPage: 1,
       sortBy: "",
+      categoryId: "",
     };
   },
 
@@ -112,10 +124,13 @@ export default {
   },
   async beforeMount() {
     this.sortBy = this.$route.query.sort_by;
+    this.categoryId = parseInt(this.$route.query.category_id)
+    console.log(this.$route.query.category_id)
     await this.$store.dispatch("viewPosts/loadPostsPerPage", {
       pageNumber: 1,
       itemsPerPage: 4,
       sort_by: this.$route.query.sort_by,
+      category_id: parseInt(this.$route.query.category_id)
     });
   },
 };

@@ -22,6 +22,7 @@ const actions = {
     context.commit('setRecentPosts', { posts: response.data });
   },
   async loadPostsPerPage(context, pageObj) {
+    console.log(pageObj)
     let response = await fetchPostsPerPage(pageObj);
     context.commit('setPostsPerPage', { posts: response.data });
     context.commit('seTotalPages', { posts: response.data });

@@ -13,6 +13,14 @@
 </template>
 <script>
 export default {
+  props: {
+      option: [
+        { text: 'Food', value: 1 },
+        { text: 'Cookery', value: 2 },
+        { text: 'Travel', value: 3 },
+        { text: 'Health', value: 4 },
+     ]
+   },
   data() {
     return {
       selected: {},

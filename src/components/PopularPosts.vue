@@ -8,10 +8,10 @@
           </div>
 
           <div class="post-entry-2 d-flex" v-for="(post, index) in posts" :key="index">
-            <div
-              class="thumbnail order-md-2"
-              style="background-image: url('assets/images/img_h_4.jpg')"
-            ></div>
+              <div
+                class="thumbnail"
+                :style="{'background-image': 'url(' + 'http://127.0.0.1:5000/images/header_image_'+ post.id + '.jpg' + ')'}"
+              ></div>
             <div class="contents order-md-1 pl-0">
               <h2>
                 <a :href="'/Posts/' + post.id">{{ post.title }}</a>
