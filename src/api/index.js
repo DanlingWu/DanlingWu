@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const API_URL = 'http://127.0.0.1:5000/allPosts'
-const API_URL_Admin = 'http://127.0.0.1:5000/adminCURD'
-const API_URL_Auth = 'http://127.0.0.1:5000/auth'
+const API_URL = process.env.VUE_APP_BASE_URL + 'allPosts'
+const API_URL_Admin = process.env.VUE_APP_BASE_URL + 'adminCURD'
+const API_URL_Auth = process.env.VUE_APP_BASE_URL + 'auth'
 
 // Posts view only
 export function fetchPosts() {
@@ -10,6 +10,7 @@ export function fetchPosts() {
 }
 
 export function fetchPost(postId) {
+  console.log("foo" +  process.env.VUE_APP_BASE_URL);
   return axios.get(`${API_URL}/AllBlogPosts/${postId}`)
 }
 

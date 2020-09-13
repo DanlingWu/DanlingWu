@@ -6,7 +6,7 @@
           <div class="half-post-entry d-block d-lg-flex bg-light" v-if="recentPosts.length > 0">
             <div
               class="img-bg"
-              :style="{'background-image': 'url(' + 'http://127.0.0.1:5000/images/header_image_'+ recentPosts[0].id + '.jpg' + ')'}"
+              :style="{'background-image': 'url(' + this.$base_url + 'images/header_image_'+ recentPosts[0].id + '.jpg' + ')'}"
             ></div>
             <div class="contents">
               <span class="caption">{{recentPosts[0].title}}</span>

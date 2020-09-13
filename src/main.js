@@ -10,7 +10,7 @@ const token = localStorage.getItem('user-token')
 if (token) {
   Vue.prototype.$http.defaults.headers['X-API-KEY'] = token
 }
-
+Vue.prototype.$base_url = process.env.VUE_APP_BASE_URL;
 Vue.config.productionTip = false
 
 new Vue({
